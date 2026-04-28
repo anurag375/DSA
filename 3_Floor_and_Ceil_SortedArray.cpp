@@ -13,21 +13,7 @@ public:
             int mid = (low + high)/2;
 
             // modified Lower Bound
-            if(nums[mid] <= target){
-                floor_idx = mid;
-                low = mid + 1;
-            }
-            else{
-                high = mid - 1;
-            }
-        }
-
-        // Lower Bound method: ceil_idx value..
-        low = 0, high = n-1;
-        while(low <= high){
-            int mid = (low + high)/2;
-
-            if(nums[mid] >= target){
+            if(nums[mid] > target){
                 ceil_idx = mid;
                 high = mid - 1;
             }
@@ -35,14 +21,28 @@ public:
                 low = mid + 1;
             }
         }
+
+        // Lower Bound method: floor_idx value..
+        low = 0, high = n-1;
+        while(low <= high){
+            int mid = (low + high)/2;
+
+            if(nums[mid] >= target){
+                floor_idx = mid;
+                high = mid - 1;
+            }
+            else{
+                low = mid + 1;
+            }
+        }
         
-        return {floor_idx, ceil_idx};
+        return {floor_idx, ceil_idx - 1};
     }
 };
 
 int main(){
-    vector<int> nums = {1,2,3,3,4,4,5,6,7,8};
-    int x = 2;
+    vector<int> nums = {1,3,3,3,4,4,5,6,7,8};
+    int x = 3;
 
     Solution obj;
     vector<int> ans = obj.getFloorAndCeil_idx(nums, x);
