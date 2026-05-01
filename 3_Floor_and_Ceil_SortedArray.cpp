@@ -1,51 +1,50 @@
 #include<bits/stdc++.h>	//#include<iostream>
 using namespace std;
 
+
 class Solution {
 public:
-
-    vector<int> getFloorAndCeil_idx(vector<int>& nums, int target) {
+    vector<int> getFloorAndCeil(vector<int> nums, int x) {
         int n = nums.size();
-        int floor_idx = -1, ceil_idx = -1;
+        int ansF = -1, ansC = -1;   // *U* default answers
 
-        int low = 0, high = n-1;
+        // finding ceil, (or 'low') : modified Lower Bound
+        int low = 0, high = n - 1;
         while(low <= high){
-            int mid = (low + high)/2;
+            int mid = low + (high-low)/2;
 
-            // modified Lower Bound
-            if(nums[mid] > target){
-                ceil_idx = mid;
+            if(nums[mid] >= x){
+                ansC = nums[mid];
                 high = mid - 1;
-            }
-            else{
+            }else{
                 low = mid + 1;
             }
         }
 
-        // Lower Bound method: floor_idx value..
-        low = 0, high = n-1;
+        // finding floor, (or 'high') : Lower Bound
+        low = 0, high = n - 1;
         while(low <= high){
-            int mid = (low + high)/2;
+            int mid = low + (high-low)/2;
 
-            if(nums[mid] >= target){
-                floor_idx = mid;
+            if(nums[mid] <= x){
+                ansF = nums[mid];
+                low = mid + 1;
+            }else{
                 high = mid - 1;
             }
-            else{
-                low = mid + 1;
-            }
         }
-        
-        return {floor_idx, ceil_idx - 1};
+        return {ansF, ansC};
     }
 };
 
+
+
 int main(){
-    vector<int> nums = {1,3,3,3,4,4,5,6,7,8};
+    vector<int> nums = {1,2,4,4,5,6,7,8};
     int x = 3;
 
     Solution obj;
-    vector<int> ans = obj.getFloorAndCeil_idx(nums, x);
+    vector<int> ans = obj.getFloorAndCeil(nums, x);
 
     cout << ans[0] << "," << ans[1];
 
