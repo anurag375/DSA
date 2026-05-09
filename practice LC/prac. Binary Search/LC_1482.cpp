@@ -68,7 +68,7 @@ int main(){
 //         if(bloomDay.size() < m*k) return -1;    // *U* insufficient flowers..
 
 //         for(int i=low; i<=high; i++){
-//             if(check(bloomDay, m, k, i)) return i;
+//             if(check(bloomDay, m, k, i)) return i;   // found the Minimum day
 //         }
 
 //         return -1;
