@@ -1,4 +1,4 @@
-#include<bits/stdc++.h>	//#include<iostream>
+#include<bits/stdc++.h>
 using namespace std;
 
 
@@ -14,14 +14,14 @@ public:
             int mid = low + (high-low)/2;
 
             int missing_values = arr[mid]-(mid + 1);
-            if(missing_values < k){     // not <= ==> **U** using example 1
+            if(missing_values < k){     // not <= --> ***U*** using example 1
                 low = mid + 1;
-            }else{  // means >=
+            }else{  // means (missing_values >= k)
                 high = mid - 1;
             }
         }
 
-        return high + 1 + k;    // *U*
+        return high + 1 + k;    // *U* or return low + k;  // **U** using example 1
     }
 };
 
