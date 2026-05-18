@@ -38,12 +38,12 @@ public:
 
             if(check(nums, m, mid) == true){
                 ans = mid;
-                high = mid - 1; // move right ==> because left jaoge toh no. od pages aur jyada hoo jayega (jabki hame usko kam krna h)
+                high = mid - 1; // move left ==> because right jaoge toh no. of pages aur jyada hoo jayega (jabki hame usko kam krna h) ==> moving LEFT means decreasing allowed maximum pages/workload
             }else{
                 low = mid + 1;
             }
         }
-        return ans;
+        return ans; // *U* or low;
     }
     
 };
