@@ -3,7 +3,7 @@ using namespace std;
 
 class Solution {    // 4. Median of Two Sorted Arrays
 public:
-    // optimal: 2-pointer  t = log(min of array length)     s=1
+    // optimal: binary search  t = log(min. of the array length)     s=1
     double findMedianSortedArrays(vector<int>& nums1, vector<int>& nums2) {
         int m = nums1.size();
         int n = nums2.size();
@@ -15,7 +15,8 @@ public:
         int low = 0, high = m;  // traverse over the smaller range
 
         while(low <= high){
-            int mid1 = low + (high-low)/2;
+            // ***U*** mid1, mid2 index pointers hein, but yeh no. of elements represent krenge (left-side of partition ke)
+            int mid1 = low + (high-low)/2;  
             int mid2 = mid_point - mid1;
 
             int l1 = INT_MIN, l2 = INT_MIN;
@@ -37,6 +38,7 @@ public:
                 low = mid1 + 1;
             }
         }
+        
         return 0;   // placeholder (never reached)
     }
 };
