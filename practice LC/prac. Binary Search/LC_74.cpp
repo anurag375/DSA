@@ -32,6 +32,6 @@ int main(){
 }
 
 
-// brute: (search every element) t = m*n
+// brute: (search every element) t = m*n    ==> same as LC_240.cpp
 
-// better: (apply binary search on each row) t = row * log (col)
+// better: (apply binary search on each row) t = row * log (col)    ==>   same as LC_240.cpp
