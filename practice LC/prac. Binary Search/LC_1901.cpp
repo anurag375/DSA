@@ -3,24 +3,39 @@ using namespace std;
 
 class Solution {    // 1901. Find a Peak Element II
 public:
+// optimal:    t = n * log(m)   ==> n = rows, m = col.s
+    int findColMax(vector<vector<int>>& mat, int col, int n){    // col = mid
+        int maxNum = -1;
+        int maxRowIdx = -1;
+        for(int i=0; i<n; i++){
+            if(maxNum < mat[i][col]){
+                maxNum = mat[i][col];
+                maxRowIdx = i;
+            }
+        }
+        return maxRowIdx;
+    }
+
     vector<int> findPeakGrid(vector<vector<int>>& mat) {
         int n = mat.size();
         int m = mat[0].size();
 
-        int i=0, j=0;
+        int low = 0;
+        int high = m - 1;
 
-        while(i<n && j<m){
-            int left = (j > 0) ? mat[i][j-1] : -1;
-            int right = (j < m-1) ? mat[i][j+1] : -1;
-            int top = (i > 0) ? mat[i-1][j] : -1;
-            int bottom = (i < n-1) ? mat[i+1][j] : -1;
-            
-            if(mat[i][j] < left) j--;
-            if(mat[i][j] < right) j++;
-            if(mat[i][j] < top) i--;
-            if(mat[i][j] < bottom) i++;
+        while(low <= high){
+            int mid = low + (high-low)/2;   // *U* stores the col. index
+            int maxRowIdx = findColMax(mat, mid, n);  // *U* stores the row index
+
+            int left = (mid > 0) ? mat[maxRowIdx][mid-1] : -1;
+            int right = (mid < m-1) ? mat[maxRowIdx][mid+1] : -1;
+
+            if(left < mat[maxRowIdx][mid] && mat[maxRowIdx][mid] > right) return{maxRowIdx, mid};
+            else if(left > mat[maxRowIdx][mid]) high = mid - 1;
+            else low = mid + 1;
         }
-        return {i, j};
+
+        return {-1, -1};    // default.. will never run as per the test cases
     }
 };
 
