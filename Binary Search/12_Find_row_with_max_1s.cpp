@@ -3,13 +3,13 @@ using namespace std;
 
 class Solution {
 // optimal:     t = n log(m)
-    int BS(vector < vector < int >> & mat, int i, int m){
+    int BS(vector < vector < int >> & mat, int i, int m){   // **U** you can also use Lower Bound/Upper Bound/First Occurrence
         int low = 0, high = m-1;
 
         while (low <= high){
             int mid = low + (high-low)/2;
 
-            if(mat[i][mid] == 1){
+            if(mat[i][mid] == 1){   // or if(mat[i][mid] >= 1)
                 high = mid - 1;
             }else{
                 low = mid + 1;
