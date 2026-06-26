@@ -2,8 +2,8 @@
 // 4 types:
     // 1. from head, 
     // 2. from tail, 
-    // 3. via position, 
-    // 4. via element/value
+    // 3. from position (k), 
+    // 4. via element/value (val)
 
 #include<bits/stdc++.h>	//#include<iostream>
 using namespace std;
@@ -55,7 +55,7 @@ void print(Node* temp){
 
 // 1. delete from head:
 Node* deleteFromHead(Node* head){
-    if(head == NULL) return head;
+    if(head == NULL || head->next == NULL) return NULL;
   
     Node* temp = head;    
     head = head->next;
@@ -78,7 +78,7 @@ Node* deleteFromTail(Node* head){
     return head;
 }
 
-// 3. delete via position (k):
+// 3. delete from position (k):
 // **U** if k=1 (head), k=(somewhere in between), k=last_node
 Node* deletePositionK(Node* head, int k){
     if(head == NULL) return head;
@@ -108,7 +108,7 @@ Node* deletePositionK(Node* head, int k){
     return head;
 }
 
-// 4. delete Value:
+// 4. delete Value (val):
 Node* deleteVal(Node* head, int val){   // MOSTly similar to 3.
     if(head == NULL) return head;
 
