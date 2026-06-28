@@ -25,15 +25,31 @@ public:
 
     ListNode* reverseList(ListNode* head) {
     // optimal: (Recursive): (a LITTLE difficult to understand)  t = n   s = 1 
-        if(head == nullptr || head->next == nullptr) return head;
+        // if(head == nullptr || head->next == nullptr) return head;
 
-        ListNode* newHead = reverseList(head->next);
-        ListNode* front = head->next;
+        // ListNode* newHead = reverseList(head->next);
+        // ListNode* front = head->next;
 
-        front->next = head;
-        head->next = nullptr;
+        // front->next = head;
+        // head->next = nullptr;
 
-        return newHead;
+        // return newHead;
+
+
+        ListNode* temp = head;
+        ListNode* prev = nullptr;
+        ListNode* front = nullptr;   // u can also define "front" inside while loop
+        
+        while(temp != nullptr){
+            front = temp->next;
+            temp->next = prev;
+
+            prev = temp;     // 1st.
+            temp = front;    // 2nd. (*U* don't write temp->next)
+        }
+
+        return prev;    // **U** prev = new head
+
     }
 };
 
@@ -60,17 +76,17 @@ int main(){
 
 
 
-    // better: (Iterative => changing the pointer direction):  t = n   s = 1 
+    // optimal: (Iterative => swapping the pointer direction):  t = n   s = 1 
         // ListNode* temp = head;
         // ListNode* prev = nullptr;
-        // ListNode* front = nullptr;
+        // ListNode* front = nullptr;   // u can also define "front" inside while loop
         
         // while(temp != nullptr){
         //     front = temp->next;
         //     temp->next = prev;
 
-        //     prev = temp;
-        //     temp = front;
+        //     prev = temp;     // 1st.
+        //     temp = front;    // 2nd.
         // }
 
         // return prev;    // **U** prev = new head
