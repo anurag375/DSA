@@ -22,7 +22,7 @@ public:
 class Solution{     // 234. Palindrome Linked List
 
 // OPTIMAL: t = (n/2 * 2)+(n/2 * 2) = O(2n)      s = O(1)
-    ListNode* reverse(ListNode* head){
+    ListNode* reverse(ListNode* head){      // [LC_206]
         ListNode* temp = head;
         ListNode* prev = nullptr;
         while(temp != nullptr){
@@ -38,7 +38,7 @@ public:
     bool isPalindrome(ListNode* head) {
         if(head == nullptr || head->next == nullptr) return head;
 
-        // 1> find mid node (pre-mid node in even-length LL)
+        // 1> find mid node (pre-mid node in even-length LL) => [little diff. from LC_876]
         ListNode* slow = head;
         ListNode* fast = head;
         while(fast->next != nullptr && fast->next->next != nullptr){ // *U* slightly diff.
@@ -46,7 +46,7 @@ public:
             fast = fast->next->next;
         }
 
-        // 2> reverse second half
+        // 2> reverse second half =>  [LC_206]
         ListNode* rightHead = reverse(slow->next);
 
         // 3> compare

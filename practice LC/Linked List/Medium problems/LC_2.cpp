@@ -1,7 +1,7 @@
 #include<bits/stdc++.h>	//#include<iostream>
 using namespace std;
 
-class ListNode{ // 2. Add Two Numbers
+class ListNode{
     public:
     int val;
     ListNode* next;
@@ -20,7 +20,7 @@ class ListNode{ // 2. Add Two Numbers
 };
 
 
-class Solution {
+class Solution {     // 2. Add Two Numbers
 public:
     ListNode* addTwoNumbers(ListNode* l1, ListNode* l2) {
     // striver ONLY:   t = max(size1, size2)   s = 1 ; or  max (size1, size2) for storing answer
