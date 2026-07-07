@@ -22,7 +22,7 @@ public:
 class Solution {    // 141. Linked List Cycle
 public:
     bool hasCycle(ListNode *head) {
-    // OPTIMAL: (Tortoise-Hare):    t = around O(n)   s = 1
+    // OPTIMAL: (Floyd's Tortoise-Hare):    t = around O(n)   s = 1
         ListNode* slow = head;
         ListNode* fast = head;
         while(fast != nullptr && fast->next != nullptr){
@@ -42,7 +42,7 @@ int main(){
     head->next = new ListNode(2);
     head->next->next = new ListNode(0);
     head->next->next->next = new ListNode(4);
-    head->next->next->next->next = head->next->next;    // *U* 4th node loops with 2nd node
+    head->next->next->next->next = head->next->next;    // *U* 4th node loops with 3rd node
 
     cout << s.hasCycle(head) << endl;
     return 0;
