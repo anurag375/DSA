@@ -17,7 +17,7 @@ public:
     }
 };
 
-class Solution {
+class Solution {    // 160. Intersection of Two Linked Lists
 public:
     ListNode *getIntersectionNode(ListNode *headA, ListNode *headB) {
         // OPTIMAL: t = (n + m)    s = 1
