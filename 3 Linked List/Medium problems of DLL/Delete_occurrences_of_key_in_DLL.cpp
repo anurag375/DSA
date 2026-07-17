@@ -26,7 +26,7 @@ class Solution {    // Delete all occurrences of a key in DLL
   public:
 
     Node* deleteAllOccurOfX(Node* head, int x) {
-    // t = n    s = 1
+    // ONLY optimal: t = n    s = 1
         Node* temp = head;
         while(temp){
             if(temp->data == x){
@@ -71,7 +71,7 @@ int main(){
 // 1 3 4 5 1 8 4
 
 
-// my-way [same logic BUT lengthy]:
+// my-way [same logic BUT lengthy]: 
 
         // if(head->next == nullptr){  // edge case: single-length LL
         //     if(head->data == x) return nullptr;
