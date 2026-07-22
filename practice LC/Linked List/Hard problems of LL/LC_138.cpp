@@ -17,29 +17,46 @@ public:
 class Solution {    // 138. Copy List with Random Pointer
 public:
     Node* copyRandomList(Node* head) {
+    // optimal: (adding new nodes in between the old LL)    
+    // t = 3n      s = n [to create the new LL]
 
-    // brute: (hash map)    t - 2n = n      s = n + n   [for map + copy nodes of new LL]
-        unordered_map<Node*, Node*> mp;
+        if(head == nullptr) return head;
 
-        // 1> create new nodes (without connnecting) + store BOTH (old, new) in a hash-map
+        // 1> insert copy-nodes in between
         Node* temp = head;
         while(temp){
-            Node* newNode = new Node(temp->val);
-            mp[temp] = newNode;
-            temp = temp->next;
+            Node* copyNode = new Node(temp->val);
+            copyNode->next = temp->next;
+            temp->next = copyNode;
+
+            temp = copyNode->next;    // **U** NEVER write temp = temp->next;
+            // or
+            // temp = temp->next->next;
         }
 
-        // 2> connect the nodes of new LL
+        // 2> connect/match the 'random' pointers
         temp = head;
         while(temp){
-            Node* newNode = mp[temp];
-            newNode->next =  mp[temp->next];
-            newNode->random =  mp[temp->random];
+            Node* copiedNode = temp->next;
+            if(temp->random) copiedNode->random = temp->random->next;
+            else copiedNode->random = nullptr;   // *U* what if temp->random = nullptr
 
-            temp = temp->next;
+            temp = temp->next->next;
         }
 
-        return mp[head];    // *U* head (being a node) was already stored before (step 1)
+        // 3> get deep-copy LL [match the 'next' pointers + separate both LLs] ==> [little diif. from striver's code]
+        Node* dummyNode = new Node(-1); 
+        dummyNode->next = head->next;   // *U*
+
+        temp = head;
+        while(temp->next){  // *U* must stop on reaching the last node
+            Node* markNextNode = temp->next;
+            temp->next = temp->next->next;
+
+            temp = markNextNode;
+        }
+
+        return dummyNode->next;    // *U* 
     }
 };
 
@@ -78,4 +95,28 @@ int main(){
 
     return 0;
 }
+
+
+    // brute: (hash map)    t - 2n = n      s = n + n   [for map + copy nodes of new LL]
+        // unordered_map<Node*, Node*> mp;
+
+        // // 1> create new nodes (without connnecting) + store BOTH (old, new) in a hash-map
+        // Node* temp = head;
+        // while(temp){
+        //     Node* newNode = new Node(temp->val);
+        //     mp[temp] = newNode;
+        //     temp = temp->next;
+        // }
+
+        // // 2> connect the nodes of new LL
+        // temp = head;
+        // while(temp){
+        //     Node* newNode = mp[temp];
+        //     newNode->next =  mp[temp->next];
+        //     newNode->random =  mp[temp->random];
+
+        //     temp = temp->next;
+        // }
+
+        // return mp[head];    // *U* head (being a node) was already stored before (step 1)
 
