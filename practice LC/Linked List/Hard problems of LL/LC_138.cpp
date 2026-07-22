@@ -18,7 +18,7 @@ class Solution {    // 138. Copy List with Random Pointer
 public:
     Node* copyRandomList(Node* head) {
     // optimal: (adding new nodes in between the old LL)    
-    // t = 3n      s = n [to create the new LL]
+    // t = 3n      s = n [only to create, store the new LL]
 
         if(head == nullptr) return head;
 
