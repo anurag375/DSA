@@ -23,6 +23,6 @@ public:
 int main(){
     Solution sol;
     vector<int> nums = {1,1,0,1,1,1};
-    cout << "unique elements : " << sol.findMaxConsecutiveOnes(nums) << endl;
+    cout << sol.findMaxConsecutiveOnes(nums) << endl;
     return 0;
 }
