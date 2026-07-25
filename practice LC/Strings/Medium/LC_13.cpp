@@ -4,7 +4,8 @@ using namespace std;
 class Solution {    // 13. Roman to Integer
 public:
     int romanToInt(string s) {
-    // optimal (most elegant):    TechnosageLearning:     t = n   s = 1
+    // optimal:    TechnosageLearning:     t = n   s = 1 [only 7 elements]
+    // (most elegant) BUT [🧐 Cannot handle invalid Roman no.s => like IM]
         unordered_map<char, int> mp = {{'I',1}, {'V',5}, {'X', 10}, {'L',50}, {'C',100}, {'D',500}, {'M',1000}};
         
         int n = s.size();
@@ -28,6 +29,37 @@ int main(){
 
     return 0;
 }
+
+
+    // ⭐⭐⭐ Retry (my-way): [same logic as above + Extra conditions are added to handle invalid cases as well]
+        // unordered_map<char, int> mp = {{'I', 1}, {'V', 5}, {'X', 10}, {'L', 50}, {'C', 100}, {'D', 500}, {'M', 1000}};
+
+        // int ans = 0;
+        // int i;
+        // for (i = s.size() - 1; i >= 1; i--){
+        //     ans += mp[s[i]];
+
+        //     if (s[i - 1] == 'I' && (s[i] == 'V' || s[i] == 'X')){
+        //         ans -= 1;
+        //         i--;
+        //     }
+        //     else if (s[i - 1] == 'X' && (s[i] == 'L' || s[i] == 'C')){
+        //         ans -= 10;
+        //         i--;
+        //     }
+        //     else if (s[i - 1] == 'C' && (s[i] == 'D' || s[i] == 'M')){
+        //         ans -= 100;
+        //         i--;
+        //     }
+        // }
+
+        // // possible values of i = 0 or -1
+        // // **U** if i=0 => then first place is NOT proceed => so DO it now
+        // if (i == 0)
+        //     ans += mp[s[i]];
+
+        // return ans;
+
 
 
 
