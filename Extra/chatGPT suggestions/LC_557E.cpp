@@ -3,7 +3,7 @@ using namespace std;
 
 class Solution {    // 557. Reverse Words in a String III
 
-// my-way: t = 2n = n [traversal + reversal]   s = 1
+// optimal (my-way): t = 2n = n [traversal + reversal]   s = 1 [in-place reversal]
     void reverse(string &s, int left, int right){
         while(left < right){
             swap(s[left], s[right]);
@@ -27,7 +27,7 @@ public:
             }
             reverse(s, left, right-1);  // *U* 'right' takes 1 step back
 
-            if(right + 1 >= s.size()) break;    // can igmore this and simply write the outer loop as => while (markNextStart < s.size())
+            if(right + 1 >= s.size()) break;    // better ignore/comment this line and simply write the outer loop as => while (markNextStart < s.size())
             markNextStart = right+1;
         }
         return s;
