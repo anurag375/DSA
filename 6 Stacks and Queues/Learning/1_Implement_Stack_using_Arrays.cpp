@@ -2,7 +2,7 @@
 using namespace std;
 
 class StackUsingArr{    // Implement Stack using Arrays
-    
+
 public:
     int topIndex = -1;   // acts as an index..
     int st[10];  // predefined size => here top = 0 to 9
@@ -22,19 +22,19 @@ public:
             topIndex--;
     }
 
-    int top(){  // return type may change..  
+    int top(){
         if(topIndex == -1){ 
             cout << "Stack is empty.." << endl;
             return -1;  // assuming the stack doesn't store -ve elements
         }
-        else 
-            return st[topIndex];
+        return st[topIndex];
     }
 
     int size(){     // return type usually int, long long..
         return (topIndex + 1);
     }
 };
+
 
 int main(){    
     StackUsingArr s;
@@ -69,8 +69,8 @@ int main(){
 }
 
 // ⭐⭐ 
-// T.C = O(1)
-// S.C = O(size of the array)
+// T.C = O(1)   [for push, pop, top, and size]
+// S.C = O(n)   [n = size of array]
 // disadv: fixed size 
 
 // =====

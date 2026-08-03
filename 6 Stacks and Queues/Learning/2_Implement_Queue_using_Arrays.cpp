@@ -43,7 +43,6 @@ public:
             cout << "Queue is empty.." << endl;
             return -1;  // assuming the queue doesn't store -ve elements
         }
-
         return q[start];
     }
 
@@ -90,6 +89,6 @@ int main(){
 }
 
 // ⭐⭐ 
-// T.C = O(1)
-// S.C = O(size of the array)
+// T.C = O(1)   [for push, pop, front, and size]
+// S.C = O(n)   [n = size of array]
 // disadv: fixed size 
