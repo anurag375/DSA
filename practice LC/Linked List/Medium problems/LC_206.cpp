@@ -20,35 +20,20 @@ class ListNode{
 };
 
 
-class Solution {    // Reverse a Linked List
+class Solution {    // 206. Reverse a Linked List
 public:
 
     ListNode* reverseList(ListNode* head) {
-    // optimal: (Recursive): (a LITTLE difficult to understand)  t = n   s = 1 
-        // if(head == nullptr || head->next == nullptr) return head;
+    // optimal: (Recursive): (a LITTLE difficult to understand)  t = n   s = 1      ==> [previous way is BETTER]
+        if(head == nullptr || head->next == nullptr) return head;
 
-        // ListNode* newHead = reverseList(head->next);
-        // ListNode* front = head->next;
+        ListNode* newHead = reverseList(head->next);
 
-        // front->next = head;
-        // head->next = nullptr;
+        ListNode* front = head->next;   // (don't do this by mistake: head = newHead->next)
+        front->next = head;     // (*U* don't interchange the sides: head = front->next)
+        head->next = nullptr;   // * set NULL at each step
 
-        // return newHead;
-
-
-        ListNode* temp = head;
-        ListNode* prev = nullptr;
-        ListNode* front = nullptr;   // u can also define "front" inside while loop
-        
-        while(temp != nullptr){
-            front = temp->next;
-            temp->next = prev;
-
-            prev = temp;     // 1st.
-            temp = front;    // 2nd. (*U* don't write temp->next)
-        }
-
-        return prev;    // **U** prev = new head
+        return newHead;
 
     }
 };
@@ -76,7 +61,7 @@ int main(){
 
 
 
-    // optimal: (Iterative => swapping the pointer direction):  t = n   s = 1 
+    // optimal: (Iterative => swapping the pointer direction):  t = n   s = 1    ==> [usually BETTER than the recursive]
         // ListNode* temp = head;
         // ListNode* prev = nullptr;
         // ListNode* front = nullptr;   // u can also define "front" inside while loop
@@ -86,14 +71,14 @@ int main(){
         //     temp->next = prev;
 
         //     prev = temp;     // 1st.
-        //     temp = front;    // 2nd.
+        //     temp = front;    // 2nd. (*U* don't write temp->next)
         // }
 
         // return prev;    // **U** prev = new head
 
 
 
-    // my-way (brute GOOD): (add to another LL):  t = n   s = n 
+    // ⭐ my-way (brute GOOD): (add to another LL):  t = n   s = n 
         // ListNode* temp = head;
         // ListNode* revHead = nullptr;
         // ListNode* revNext = nullptr;
@@ -112,11 +97,13 @@ int main(){
         // ListNode* temp = head;
         // stack<int> st;
         
+        // // 1> store in stack
         // while(temp != nullptr){
         //     st.push(temp->val);
         //     temp = temp->next;
         // }
 
+        // // 2> replace existing LL values with stack elements
         // temp = head;
         // while(temp != nullptr){
         //     temp->val = st.top();
