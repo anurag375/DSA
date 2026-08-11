@@ -1,7 +1,7 @@
 #include<bits/stdc++.h>	//#include<iostream>
 using namespace std;
 
-class Solution {    // Next Greater Element
+class Solution {    // Next Greater Element ==> (Exact same as striver vid.) ==> Diff. from LC 496
 public:
     vector<int> nextLargerElement(vector<int> arr) {
     // optimal:     t = 2n      s = n [just to store the answer]
