@@ -1,7 +1,7 @@
 #include<bits/stdc++.h>	//#include<iostream>
 using namespace std;
 
-class Solution {
+class Solution {    // 4006. Count Valid Prefixes
 public:
     int countValidPrefixes(string s) {
     // my-way: (contest)   t = n   s = 1
