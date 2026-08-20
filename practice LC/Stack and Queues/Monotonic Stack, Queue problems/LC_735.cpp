@@ -4,37 +4,31 @@ using namespace std;
 class Solution {    // 735. Asteroid Collision
 public:
     vector<int> asteroidCollision(vector<int>& asteroids) {
-    // optimal ONLY (striver):    t = 2n = n       s = n
-        stack<int> st;
+    // optimal (best) (striver):    t = 2n = n       s = n
+        vector<int> st;    // ** works as a stack
         int n = asteroids.size();
 
         for(int i=0; i<n; i++){
             if(asteroids[i] > 0){
-                st.push(asteroids[i]);
+                st.push_back(asteroids[i]);
                 continue;
             }
             // *U* asteroids[i] is a -ve below this point
 
-            while(!st.empty() && st.top() > 0 && st.top() < abs(asteroids[i])){   // check explicitely, as top() can store both +ve and -ve
-                st.pop();
+            while(!st.empty() && st.back() > 0 && st.back() < abs(asteroids[i])){   // check explicitely, as back() can store both +ve and -ve
+                st.pop_back();
             }
-            if(!st.empty() && st.top() == abs(asteroids[i])){
-                st.pop();
+            if(!st.empty() && st.back() == abs(asteroids[i])){
+                st.pop_back();
                 continue;
             }
-            if(st.empty() || st.top() < 0){   // if asteroids[i] is the most powerful OR top() is -ve   ==>   ONLY cases where -ve element can be pushed
-                st.push(asteroids[i]);
+            if(st.empty() || st.back() < 0){   // if asteroids[i] is the most powerful OR back() is -ve   ==>   ONLY cases where -ve element can be pushed
+                st.push_back(asteroids[i]);
             }
 
         }
-
-        vector<int> ans;
-        while(!st.empty()){
-            ans.push_back(st.top());
-            st.pop();
-        }
-        reverse(ans.begin(), ans.end());
-        return ans;
+        
+        return st;
     }
 };
 
@@ -54,32 +48,28 @@ int main(){
 
 
 // ====================
-    // optimal ONLY (my-way):    t = 2n = n       s = n
+    // optimal (striver + my-way):    t = 2n = n       s = n
         // stack<int> st;
-        // int n = nums.size();
+        // int n = asteroids.size();
 
-        // int i = 0;
-        // while(i<n){
-        //     if(nums[i] > 0){
-        //         st.push(nums[i]);
-        //         i++;
+        // for(int i=0; i<n; i++){
+        //     if(asteroids[i] > 0){
+        //         st.push(asteroids[i]);
         //         continue;
         //     }
-        //     // nums[i] is -ve below this point
+        //     // *U* asteroids[i] is a -ve below this point
 
-        //     while(!st.empty() && st.top() > 0 && st.top() < abs(nums[i])){   // check explicitely, as top() can store both +ve and -ve
+        //     while(!st.empty() && st.top() > 0 && st.top() < abs(asteroids[i])){   // check explicitely, as top() can store both +ve and -ve
         //         st.pop();
         //     }
-        //     if(!st.empty() && st.top() == abs(nums[i])){
+        //     if(!st.empty() && st.top() == abs(asteroids[i])){
         //         st.pop();
-        //         i++;
         //         continue;
         //     }
-        //     if(st.empty() && st.top() < 0){   // nums[i] is the most powerful    ==> ONLY case where -ve element can be pushed
-        //         st.push(nums[i]);
+        //     if(st.empty() || st.top() < 0){   // if asteroids[i] is the most powerful OR top() is -ve   ==>   ONLY cases where -ve element can be pushed
+        //         st.push(asteroids[i]);
         //     }
 
-        //     i++;
         // }
 
         // vector<int> ans;
