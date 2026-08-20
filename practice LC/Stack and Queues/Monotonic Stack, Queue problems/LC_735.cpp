@@ -45,9 +45,6 @@ int main(){
 
 
 
-
-
-// ====================
     // optimal (striver + my-way):    t = 2n = n       s = n
         // stack<int> st;
         // int n = asteroids.size();
