@@ -4,7 +4,7 @@ using namespace std;
 class Solution {    // 735. Asteroid Collision
 public:
     vector<int> asteroidCollision(vector<int>& asteroids) {
-    // BEST optimal (striver):    t = 2n = n       s = n     ==>  **U** [used vector instead of stack to acoid the last reversal step]
+    // BEST optimal (striver):    t = 2n = n       s = n     ==>  **U** [used vector as a stack to avoid the last reversal step]
         vector<int> st;    // ** works as a stack
         int n = asteroids.size();
 
