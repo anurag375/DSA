@@ -4,24 +4,26 @@ using namespace std;
 class Solution {
 public:
     int trap(vector<int>& height) {
-    // brute (little better T.C & S.C):   t = 2n = n      s = n   [skipped the prefixMax -> in the last loop, remember the left-max]
+    // optimal (Shraddha Khapra): [2 pointer]   t = n      s = 1
         int n = height.size();
-        int leftMax = height[0];    // replacement of prefixMax vector
-        vector<int> suffixMax(n,0);
+        
+        int leftMax = 0;
+        int rightMax = 0;
         int totalWater = 0;
+        
+        int left = 0;
+        int right = n-1;
+        while(left < right){
+            leftMax = max(leftMax, height[left]);
+            rightMax = max(rightMax, height[right]);
 
-        // 1> find suffixMax (finds taller bars on right side):
-        suffixMax[n-1] = height[n-1];
-        for(int i=n-2; i>=0; i--){
-            suffixMax[i] = max(suffixMax[i+1], height[i]);
-        }
-
-        // 2> find water:
-        for(int i=0; i<n; i++){
-            leftMax = max(leftMax, height[i]);
-
-            int waterHeight = min(leftMax, suffixMax[i]); // *U* water level above the current bar..
-            totalWater += waterHeight - height[i];
+            if(leftMax < rightMax){
+                totalWater += leftMax - height[left];
+                left++;
+            }else{
+                totalWater += rightMax - height[right];
+                right--;
+            }
         }
 
         return totalWater;
@@ -30,8 +32,8 @@ public:
 
 int main(){
     Solution sol;
-    // vector<int> height = {0,1,0,2,1,0,1,3,2,1,2,1};     // output: 6
-    vector<int> height = {4,2,0,3,2,5};     // output: 9
+    vector<int> height = {0,1,0,2,1,0,1,3,2,1,2,1};     // output: 6
+    // vector<int> height = {4,2,0,3,2,5};     // output: 9
     cout << sol.trap(height) << endl;
     return 0;
 }
