@@ -1,7 +1,7 @@
 #include<bits/stdc++.h>	//#include<iostream>
 using namespace std;
 
-class Solution {
+class Solution {    // 42. Trapping Rain Water
 public:
     int trap(vector<int>& height) {
     // optimal (Shraddha Khapra): [2 pointer]   t = n      s = 1
@@ -40,7 +40,7 @@ int main(){
 
 
 
-    // brute (little better T.C & S.C):   t = 2n = n      s = n  
+    // brute (little better T.C & S.C):  (striver):   t = 2n = n      s = n  
     // [mostly same as brute]  ==>  [skip the "prefixMax" -> maintain a "leftMax" (int) in the final loop]
 
         // int n = height.size();
@@ -67,7 +67,7 @@ int main(){
 
 
 
-    // brute:   t = 3n = n      s = 2n = n
+    // brute: (striver)   t = 3n = n      s = 2n = n
         // int n = height.size();
         // vector<int> prefixMax(n,0);
         // vector<int> suffixMax(n,0);
