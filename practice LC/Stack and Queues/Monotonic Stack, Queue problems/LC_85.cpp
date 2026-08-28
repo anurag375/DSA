@@ -3,12 +3,14 @@ using namespace std;
 
 class Solution {    // 85. Maximal Rectangle
 
+// optimal only:
+// t = (m*n) + (n*2n)   [for finding 'prefixSum' + for the task/helper func. below]
+// s = (m*n) + n    [for 'prefixSum' + for stack in helper func.]
     int maxAreaHist(vector<int>& heights){
         int n = heights.size();
         int maxArea = 0;
         stack<int> st;  // **U** stores like (modified) next smaller element
 
-        // 
         for(int i=0; i<n; i++){
             while(!st.empty() && heights[st.top()] >= heights[i]){
                 int tempIdx = st.top();
@@ -43,17 +45,17 @@ public:
         int col = matrix[0].size();
         vector<vector<int>> prefixSum(row, vector<int>(col, 0));  // * 'int' type
 
-        // 1> find column sum (from top to bottom):
+        // 1> geneerate "prefixSum" (from top to bottom):
         for(int j=0; j<col; j++){   // *
+            int sum = 0;
             for(int i=0; i<row; i++){   // *
-                if(i == 0 || matrix[i-1][j] == '0')  // **U** 
-                    prefixSum[i][j] = matrix[i][j] - '0';   // *U*
-                else  // 
-                    prefixSum[i][j] += ( matrix[i-1][j] - '0');  
+                sum += ( matrix[i][j] - '0' );  // *U*
+                if(matrix[i][j] == '0') sum = 0;    // *U* ; reset
+                prefixSum[i][j] = sum;  
             }
         }
             
-        // 2> find LC 84 (row wise):
+        // 2> similar to LC. 84 (but row wise):
         int ansArea = 0;
         for(int i=0; i<row; i++){
             ansArea = max( ansArea, maxAreaHist(prefixSum[i]) );
