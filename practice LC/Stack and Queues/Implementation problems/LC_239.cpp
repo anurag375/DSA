@@ -17,7 +17,7 @@ public:
             // 2> Add current index to the back
             dq.push_back(i);    // (index)
             
-            // 3> Add answer once first window is complete (atleat window's width is k-1)
+            // 3> Add to answer-vector once first window is complete (atleat window's width is k-1)
             if(i >= k-1)    // ***U*** say for k=3 (3 size window), the 1st window starts from (index) k-1 = 2 
                 ans.push_back(nums[dq.front()]);  // (value)
             
