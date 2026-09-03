@@ -1,0 +1,38 @@
+Priority:   [u can use a map or a function that returns based on conditions]
+^        3
+* /      2
++ -      1
+( )      0 (default)
+
+
+
+infix = operators are in between => prog. lang.s
+prefix = operators are at front => used on tree
+postfix = operators are at back => stack based calc.
+
+
+
+⭐1️⃣  Infix → Postfix:     [uses a stack and an answer string]
+
+✅ Rules:
+   | Symbol                           | What to do                                                      |
+   | -------------------------------- | --------------------------------------------------------------- |
+1. | Operand (`A`, `B`, `1`, `2`)     | Add directly to `ans` string                                    |
+2. | `(`                              | Push into stack                                                 |
+3. | `)`                              | Pop until `(` is found & add to ans, then remove `(`            |
+4. | Operator                         | Pop higher/equal priority operators, then push current operator |
+
+
+
+
+⭐2️⃣ infix → prefix:
+
+1> Reverse the infix string
+2> Swap ( ↔ )
+3> Convert the resulting expression to postfix-like form ==> Almost same rules as above; except the last rule:
+
+   | Symbol                           | What to do                                                      |
+   | -------------------------------- | --------------------------------------------------------------- |
+4. | Operator                         | Pop ONLY higher priority operators, then push current operator  |
+
+4> Reverse the final answer
