@@ -12,15 +12,15 @@ public:
         
         int i = n-1;
         while(i >= 0){
-            if((s[i] >= 'A' && s[i] <= 'Z') || (s[i] >= 'a' && s[i] <= 'z') || (s[i] >= '0' && s[i] <= '9'))
+            if((s[i] >= 'A' && s[i] <= 'Z') || (s[i] >= 'a' && s[i] <= 'z') || (s[i] >= '0' && s[i] <= '9'))    // 1> operands
                 st.push(string(1, s[i]));   // ⭐ char to string conversion..
-            else{
-                string sFirst = st.top();
+            else{   // 2> only operators [NO parenthesis]
+                string t1 = st.top();
                 st.pop();
-                string sSecond = st.top();
+                string t2 = st.top();
                 st.pop();
 
-                string newS = sFirst + s[i] + sSecond;
+                string newS = t1 + s[i] + t2;
                 st.push("(" + newS + ")");
             }
             i--;
