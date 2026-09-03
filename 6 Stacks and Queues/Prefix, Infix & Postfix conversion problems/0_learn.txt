@@ -1,0 +1,70 @@
+Priority:   [u can use a map or a function that returns based on conditions]
+^        3
+* /      2
++ -      1
+( )      0 (default)
+
+
+
+infix = operators are in between => prog. lang.s   ==>  ⭐[ONLY they store parenthesis]
+prefix = operators are at front => used on tree
+postfix = operators are at back => stack based calc.
+
+
+
+⭐1️⃣  Infix → Postfix:     [uses a stack and an answer string]
+
+✅ Rules:
+   | Symbol                           | What to do                                                      |
+   | -------------------------------- | --------------------------------------------------------------- |
+1. | Operand (`A`, `B`, `1`, `2`)     | Add directly to `ans` string                                    |
+2. | `(`                              | Push into stack                                                 |
+3. | `)`                              | Pop until `(` is found & add to ans, then remove `(`            |
+4. | Operator                         | Pop higher/equal priority operators, then push current operator |
+
+
+
+⭐⭐2️⃣ Infix → Prefix:
+
+1> Reverse the infix string
+2> Swap ( ↔ )
+3> Convert the resulting expression to postfix-like form ==> Almost same rules as above; except the last rule:
+
+   | Symbol                           | What to do                                                      |
+   | -------------------------------- | --------------------------------------------------------------- |
+   |                                  |                                                                 |
+4. | Operator                         | case 1: for ^, {same as Infix -> Postfix step 4}                |
+   |                                  | case 2: for others, Pop ONLY higher priority operators, then ...|
+
+4> Reverse the final answer
+
+
+
+⭐3️⃣ Postfix → Infix:    [only stack]
+
+🧠 while poping expressions, follow =>
+(second top) (operator) (first top)
+
+
+
+⭐4️⃣ Prefix → Infix:    [only stack]
+
+✅ trverse right to left
+🧠 while poping expressions, follow =>
+(first top) (operator) (second top)
+
+
+
+⭐5️⃣ Postfix → Prefix:    [only stack]
+
+🧠 while poping expressions, follow =>
+(operator) (second top) (first top)
+
+
+
+⭐6️⃣ Prefix → Postfix:    [only stack]
+
+✅ trverse right to left
+🧠 while poping expressions, follow =>
+(first top) (second top) (operator)
+
