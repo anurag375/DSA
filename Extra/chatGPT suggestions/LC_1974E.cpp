@@ -4,7 +4,7 @@ using namespace std;
 class Solution {    // 1974. Minimum Time to Type Word Using Special Typewriter
 public:
     int minTimeToType(string word) {
-    // my-way + gpt:    t = n   s = 1
+    // optimal: (my-way + gpt):    t = n   s = 1
         int n = word.size();
         int ans = n;    // *U* 1> time taken for typing each letter
 
