@@ -8,4 +8,3 @@ vector<int> matchingStrings(vector<string> stringList, vector<string> queries) {
     return ans;
 }
 
-
