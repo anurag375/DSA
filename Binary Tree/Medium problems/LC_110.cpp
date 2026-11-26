@@ -57,3 +57,8 @@ int main(){
 
     return 0;
 }
+
+
+// 2 methods:
+// 1> Recursion: [code done above]
+// 2> Level order: [do it yourself]
